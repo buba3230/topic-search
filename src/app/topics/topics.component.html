@@ -1,0 +1,8 @@
+<form [formGroup] = "searchForm">
+<mat-form-field>
+    <mat-label>
+        Filter by keywords
+    </mat-label>
+    <input type="text" name="key" matInput [formControl]="keyControl">
+</mat-form-field>  
+</form>
