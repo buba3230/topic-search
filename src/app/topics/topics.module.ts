@@ -8,15 +8,36 @@ import { EffectsModule } from '@ngrx/effects';
 import { SearchEffects } from '../store/search.effects';
 import { SearchService } from '../store/search.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { TopicCardComponent } from './topic-card/topic-card.component';
+import { MatButtonModule } from '@angular/material/button';
+import { TruncatePipe } from './topic-card/trim-description.pipe';
+import { CustomDatePipe } from './topic-card/customDate.pipe';
+import { HighLightSearchTermTextPipe } from './topic-card/highlight.pipe';
+import { TopicInfoComponent } from './topic-info/topic-info.component';
+import { TopicInfoResolverService } from './topic-info/topic-info-resolver.service';
 
-const routes: Routes = [{ path: '', component: TopicsComponent }];
+const routes: Routes = [
+  { path: '', component: TopicsComponent, children: [
+    {
+      path: ':id',
+      component: TopicInfoComponent,
+      resolve: {
+        topic: TopicInfoResolverService
+      }
+    }
+  ] }];
 
 @NgModule({
-  declarations: [TopicsComponent],
+  declarations: [TopicsComponent, TopicCardComponent, TruncatePipe, CustomDatePipe, HighLightSearchTermTextPipe,
+    TopicInfoComponent
+  ],
   imports: [
-    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('SEARCH', reducer),
@@ -27,6 +48,6 @@ const routes: Routes = [{ path: '', component: TopicsComponent }];
     TopicsComponent,
     HttpClientModule
   ],
-  providers: [SearchService]
+  providers: [SearchService, TruncatePipe, CustomDatePipe, HighLightSearchTermTextPipe, TopicInfoResolverService]
 })
 export class TopicsModule {}

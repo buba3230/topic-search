@@ -1,0 +1,9 @@
+@import "@fontsource/montserrat";
+
+@mixin text-settings($weight, $size, $line-height, $color) {
+  font-family: 'Montserrat';
+      font-weight: $weight;
+      font-size: $size;
+      line-height: $line-height;
+      color: $color;
+}

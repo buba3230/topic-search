@@ -1,6 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { ITopicState } from './search.models';
 import {
+  LoadAction,
+  LoadActionFailure,
+  LoadActionSuccess,
   SearchAction,
   SearchActionFailure,
   SearchActionSuccess,
@@ -15,6 +18,12 @@ const initialState: ITopicState = {
 const searchReducer = createReducer(
   initialState,
   on(
+    LoadAction,
+    (state): ITopicState => ({
+      ...state
+    })
+  ),
+  on(
     SearchAction,
     (state, action): ITopicState => ({
       ...state,
@@ -22,6 +31,7 @@ const searchReducer = createReducer(
     })
   ),
   on(
+    LoadActionSuccess,
     SearchActionSuccess,
     (state, action): ITopicState => ({
       ...state,
@@ -29,6 +39,7 @@ const searchReducer = createReducer(
     })
   ),
   on(
+    LoadActionFailure,
     SearchActionFailure,
     (state, action): ITopicState => ({
       ...state,

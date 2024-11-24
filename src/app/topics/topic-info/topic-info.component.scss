@@ -1,0 +1,45 @@
+@use "../text" as text;
+
+.wrapper{
+    width: 1440px;
+    margin: 0 auto;
+  
+
+    .header {
+        position: relative;
+        width: 100%;
+        height: 245px;
+        img {
+            width: 100%;
+            height: 245px;
+            object-fit: cover;
+          }
+    }
+    .body {
+        position: absolute;
+        margin: -95px 75px 0 75px;
+        width: 1290px;
+        border: 1px solid #EAEAEA;
+        box-shadow: 0px 8px 24px 0px #0000000D;
+        background-color: white;
+        .title {
+            @include text.text-settings(400, 24px, 29.26px, #363636);
+            text-align: center;
+            margin: 45px 0;
+        }
+
+        .description {
+            @include text.text-settings(400, 18px, 27px, #000000);
+            padding: 0 75px;
+            margin-bottom: 45px;
+            text-align: left;
+        }
+    }
+    .actions {
+        position:absolute;
+        .button {
+            @include text.text-settings(700, 16px, 24px, #363636);
+            text-align: left;
+        }
+    }
+}

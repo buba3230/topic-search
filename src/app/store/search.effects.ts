@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SearchService } from './search.service';
 import {
+  LoadAction,
+  LoadActionFailure,
+  LoadActionSuccess,
   SearchAction,
   SearchActionFailure,
   SearchActionSuccess,
@@ -13,6 +16,22 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class SearchEffects {
+  sload$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(LoadAction),
+      switchMap((action) => {
+        return this.searchService.getTopics$().pipe(
+          map((topics: ITopic[]) => {
+            return LoadActionSuccess({ result: topics });
+          })
+        );
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of(LoadActionFailure({ error }));
+      })
+    )
+  );
+
   search$ = createEffect(() =>
     this.actions$.pipe(
       ofType(SearchAction),

@@ -1,0 +1,83 @@
+@use "../text" as text;
+
+:host {
+    display: block;
+    width: 400px;
+    height: 530px;
+    box-shadow: 0px 8px 24px 0px #0000000D;
+}
+
+:host::ng-deep {
+    .highlight {
+      background-color: yellow !important;
+    }
+}
+  
+
+.topic-card {
+    width: 100%;
+    height: 100%;
+    .card-content {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .image {
+        width: 400px;
+        height: 217px;
+    }
+
+    .calendar {
+        width: 16px;
+        height: 16px;
+    }
+
+    .arrow {
+        width: 12px;
+        height: 10px;
+    }
+
+    .card-text {
+        &--date{
+            @include text.text-settings(400, 14px, 21px, #363636);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        &--title {
+            @include text.text-settings(400, 24px, 29.26px, #363636);
+            width: 350px;
+            min-height: 58px;
+            max-height: 58px;
+            overflow: hidden;
+	        text-overflow: ellipsis;
+
+            //ellispis big title
+            @supports (-webkit-line-clamp: 2) {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: initial;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+              }
+        }
+        &--description {
+            @include text.text-settings(400, 16px, 24px, #363636);
+            min-height: 72px;
+        }
+    }
+}
+
+::ng-deep {
+    .mdc-button__label {
+        @include text.text-settings(700, 16px, 24px, #363636);
+        letter-spacing: 0;
+    }
+  }

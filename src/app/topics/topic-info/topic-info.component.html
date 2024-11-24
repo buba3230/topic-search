@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <div class="header" #header>
+        <img src={{topic.picture}} alt="topic picture">
+    </div>
+    <div class="body" #body>
+        <p class="title">{{topic.title}}</p>
+        <p class="description">{{topic.description}}</p>
+    </div>
+    <div class="actions">
+        <button mat-button (click)="goHome()" class="button" #btn>
+            <img src='/assets/Arrow - left.png' alt="arrow left" class="arrow">
+            <span class="button"> Back to homepage</span>
+        </button>
+    </div>
+</div>

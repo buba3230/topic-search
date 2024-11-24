@@ -3,6 +3,7 @@ import { ITopicState } from './search.models';
 
 export const searchFeatureSelector =
   createFeatureSelector<ITopicState>('SEARCH');
+  
 export const selectTopicsSelector = createSelector(
   searchFeatureSelector,
   (searchState: ITopicState) => searchState.searchResult

@@ -3,8 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [{
   path: '',
-  loadChildren: () => import('./topics/topics.module').then(m => m.TopicsModule), 
+  redirectTo: 'topics',
   pathMatch: 'full'
+},
+{
+  path: 'topics',
+  loadChildren: () => import('./topics/topics.module').then(m => m.TopicsModule), 
 }];
 
 @NgModule({

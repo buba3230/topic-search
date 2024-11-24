@@ -1,8 +1,18 @@
-<form [formGroup] = "searchForm">
-<mat-form-field>
-    <mat-label>
-        Filter by keywords
-    </mat-label>
-    <input type="text" name="key" matInput [formControl]="keyControl">
-</mat-form-field>  
-</form>
+<router-outlet #outlet="outlet"></router-outlet>
+<div class="wrapper" *ngIf="!outlet.isActivated">
+    <div class="content">
+        <p class="label">Filter by keywords</p>
+        <form [formGroup] = "searchForm">
+            <div class="search">
+                <img src='/assets/search.png' alt="search" class="search--icon">
+                <input type="search" class="search-input" [formControl]="keyControl">
+            </div> 
+        </form>
+        <div class="topics-wrapper" *ngIf="searchedTopics$ | async as topics">
+                <div class="label result" *ngIf="keyPhrase">Results: {{topics.length}}</div>
+                <div class="topics">
+                    <topic-card *ngFor="let topic of topics" [topic]="topic" class="topic" [searchTerm]="keyPhrase"></topic-card>
+                </div> 
+        </div>
+    </div>
+</div>

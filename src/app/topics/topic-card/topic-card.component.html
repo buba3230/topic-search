@@ -1,0 +1,15 @@
+<mat-card class="topic-card">
+    <img mat-card-image src={{topic.picture}} alt={{topic.title}} class="image">
+    <mat-card-content class="card-content">
+      <p class="card-text card-text--date"><img src='/assets/akar-icons_calendar.png' alt="calendar (not material)" class="calendar">{{topic.postingDate | customDate}}</p>
+      <p class="card-text card-text--title" [innerHTML]="topic.title | highlightSearchTermText: searchTerm">
+      </p>
+      <p class="card-text card-text--description" [innerHTML]="topic.description | trimDescription: 100 | highlightSearchTermText: searchTerm">
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="gotToTopic(topic.id)">Read more
+        <img src='/assets/Arrow - Right.png' alt="calendar (not material)" class="arrow">
+      </button>
+    </mat-card-actions>
+</mat-card>
